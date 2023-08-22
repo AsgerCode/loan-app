@@ -1,0 +1,38 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-loanapp-dev-91540-authRole",
+      "UnauthRoleArn": "arn:aws:iam::942110584303:role/amplify-loanapp-dev-91540-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::942110584303:role/amplify-loanapp-dev-91540-authRole",
+      "Region": "eu-north-1",
+      "DeploymentBucketName": "amplify-loanapp-dev-91540-deployment",
+      "UnauthRoleName": "amplify-loanapp-dev-91540-unauthRole",
+      "StackName": "amplify-loanapp-dev-91540",
+      "StackId": "arn:aws:cloudformation:eu-north-1:942110584303:stack/amplify-loanapp-dev-91540/ede00700-3ffa-11ee-ad50-0e5077e4a312",
+      "AmplifyAppId": "d1pyw9velwxohf",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-loanapp-dev-91540-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
+    },
+    "categories": {
+      "function": {
+        "AccountHandler": {
+          "deploymentBucketName": "amplify-loanapp-dev-91540-deployment",
+          "s3Key": "amplify-builds/AccountHandler-3548703470476f686930-build.zip"
+        },
+        "LoansHandler": {
+          "deploymentBucketName": "amplify-loanapp-dev-91540-deployment",
+          "s3Key": "amplify-builds/LoansHandler-4d47786b5a7378727451-build.zip"
+        }
+      },
+      "auth": {
+        "loanapp": {}
+      },
+      "storage": {
+        "accounts": {},
+        "loans": {}
+      },
+      "api": {
+        "loanapi": {}
+      }
+    }
+  }
+}

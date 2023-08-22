@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "paths": {
+    "/account": {
+      "name": "/account",
+      "lambdaFunction": "AccountHandler",
+      "permissions": {
+        "setting": "private",
+        "auth": [
+          "create",
+          "read",
+          "update",
+          "delete"
+        ]
+      }
+    },
+    "/loans": {
+      "name": "/loans",
+      "lambdaFunction": "LoansHandler",
+      "permissions": {
+        "setting": "private",
+        "auth": [
+          "create",
+          "read",
+          "update",
+          "delete"
+        ]
+      }
+    }
+  }
+}
