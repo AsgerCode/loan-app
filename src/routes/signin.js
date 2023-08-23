@@ -6,32 +6,47 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import Alert from '@mui/material/Alert';
 import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-const defaultTheme = createTheme();
+// setting our theme up
+const defaultTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
 
 export default function SignIn() {
   const location = useLocation();
+  const navigate = useNavigate();
   const [message, setMessage] = React.useState('');
+  const [error, setError] = React.useState('');
 
   React.useEffect(()=>{
+    // fetch the signup success message if it exists
     if (location.state) {
       setMessage(location.state.signup);
     }
-	}, []);
+	}, [location]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    // sign our user in. No input validation is necessary as it is handled by Cognito by default
     try {
-      const user = await Auth.signIn(data.get('email'), data.get('password'));
+      const user = await Auth.signIn(data.get('username'), data.get('password'));
+      const role = user.attributes['custom:role'];
+      // redirect the user to the relevant page based on the role attribute chosen at signup
+      navigate(`/${role}`, {user: user});
     } catch (error) {
-      console.log('error signing in', error);
+      console.log(error);
+      setMessage('');
+      setError(error.toString());
     }
   };
 
@@ -54,15 +69,21 @@ export default function SignIn() {
             Sign in
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-            {message && <Alert severity="success">{message}</Alert>}
+          {error && <Grid item xs={12}>
+                <Alert severity="error">{error.toString()}</Alert>
+              </Grid>}
+            {message && <Grid item xs={12}>
+              <Alert severity="success">{message}</Alert>
+              </Grid>
+              }
             <TextField
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              id="username"
+              label="Username"
+              name="username"
+              autoComplete="username"
               autoFocus
             />
             <TextField

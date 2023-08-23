@@ -1,3 +1,4 @@
+// Lambda Trigger to auto verify users upon registration
 const handler = async (event) => {
     // Confirm the user
     event.response.autoConfirmUser = true;

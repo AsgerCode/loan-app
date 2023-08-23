@@ -1,6 +1,33 @@
-# Getting Started with Create React App
+## Loan APP
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with Create React App, and then adapted to run 100% serverless with the Amplify CLI. Amplify CLI bootstrapped most of the backend code, wrote Cloudformation provisions to include the best services on AWS and as such this project was possible to be jumpstarted quickly. This seemed like the best decision to include as many features as possible in the least amount of time.
+The tech stack used on this project is React on the frontend, with a backend written in Node.js, hosted on AWS, with Lambda, DynamoDB and API Gateway.
+Tools used in the project are CloudWatch and Cognito.
+
+## Requirements
+
+I will be addressing the requirements one by one and explaining my decisions when relevant:
+1. The project was developed entirely in Javascript, HTML and a little CSS.
+2. The project is 100% serverless.
+3. The application is secure with authentication through Cognito user pools. Checks are being made on the front-end to block bad login attempts.
+4. The application has full CloudWatch coverage, provisioned by Amplify.
+5. While the project is set up to be able to start implementing tests with Jest, these weren't written due to lack of time.
+6. Git was used for version control.
+
+## Bonus points
+
+On this section I will be addressing the bonus points one by one and explaining my decisions when relevant:
+1. All backend functionality is written on Lambda.
+2. While I have read about Artillery, I never used it. I know that adapting your application to an event-driven approach using SQS or EventBridge can highly impact costs and performance for the better.
+3. Amplify fully manages CI/CD. I have no experience writing pipelines, but I know what they are and what they achieve.
+4. My understanding is that these 3 concepts are related. A VPC is a private cloud where you can host any service you want (if allowed). The load balancer distributes traffic to those services hosted on diferent VPC's, based on which VPC's have the least traffic. Auto scaling simply provisions new VPC's based on the load that the other VPC's have. If all VPC's are overloaded, new ones are created, if resources are not being used, some VPC's are taken down.
+5. The provisions for this application were managed by Amplify. I don't have experience developing Terraform and rely on other services to help me provision. However you can find the CloudFormation script on this directory, under amplify/backend/awscloudformation.
+
+## The application is live!
+
+You can head over [HERE]() and use the application right now, straight from the cloud!
+The homepage is a login screen, but there's an option to create an account.
+When logging in, the app will redirect you to the relevant page, depending on if the registered user is a customer or an adviser.
 
 ## Available Scripts
 
@@ -16,56 +43,4 @@ You may also see any lint errors in the console.
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# loan-app
+Runs but there are no tests implemented.

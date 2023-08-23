@@ -18,7 +18,12 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Auth } from 'aws-amplify';
 
-const defaultTheme = createTheme();
+// set up our theme to be dark
+const defaultTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
 
 export default function SignUp() {
   const [role, setRole] = React.useState('');
@@ -33,12 +38,15 @@ export default function SignUp() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     try {
+
+      // input checking for the role selection. No input checking is necessary for the other fields, as Cognito handles them by default.
+      // role is a custom attribute in Cognito
       if(!role) {
         setError("AuthError: Role cannot be empty");
         return;
       }
 
-      console.log(event)
+      // registering our user. 
       const { user } = await Auth.signUp({
         username: data.get('username'),
         password: data.get('password'),
@@ -47,7 +55,6 @@ export default function SignUp() {
           'custom:role': role,
         }
       });
-      console.log(user);
       navigate('/', {state:{signup: "Account created successfully, you may login."}});
     } catch (error) {
       setError(error);

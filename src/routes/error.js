@@ -3,6 +3,7 @@ import React from 'react';
 import { Box, Button, Container, Typography } from '@mui/material';
 import Grid from '@mui/material/Grid';
 
+// simple 404 page so it doesn't look as ugly
 export default function Error() {
   const error = useRouteError();
   console.error(error);

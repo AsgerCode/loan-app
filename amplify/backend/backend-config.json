@@ -1,6 +1,6 @@
 {
   "api": {
-    "loanapi": {
+    "loanApi": {
       "dependsOn": [
         {
           "attributes": [
@@ -8,15 +8,7 @@
             "Arn"
           ],
           "category": "function",
-          "resourceName": "AccountHandler"
-        },
-        {
-          "attributes": [
-            "Name",
-            "Arn"
-          ],
-          "category": "function",
-          "resourceName": "LoansHandler"
+          "resourceName": "loansHandler"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -50,83 +42,29 @@
     }
   },
   "function": {
-    "AccountHandler": {
-      "build": true,
-      "dependsOn": [
-        {
-          "attributeEnvMap": {
-            "Arn": "TABLE_ARN",
-            "Name": "TABLE_NAME"
-          },
-          "attributes": [
-            "Name",
-            "Arn"
-          ],
-          "category": "storage",
-          "resourceName": "accounts"
-        }
-      ],
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    },
-    "LoansHandler": {
-      "build": true,
-      "dependsOn": [
-        {
-          "attributeEnvMap": {
-            "Arn": "TABLE_ARN",
-            "Name": "TABLE_NAME"
-          },
-          "attributes": [
-            "Name",
-            "Arn"
-          ],
-          "category": "storage",
-          "resourceName": "loans"
-        }
-      ],
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    },
     "loanSignUpTrigger": {
       "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "loansHandler": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
+          ],
+          "category": "storage",
+          "resourceName": "loansdb"
+        }
+      ],
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     }
   },
   "parameters": {
-    "AMPLIFY_function_AccountHandler_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "AccountHandler"
-        }
-      ]
-    },
-    "AMPLIFY_function_AccountHandler_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "AccountHandler"
-        }
-      ]
-    },
-    "AMPLIFY_function_LoansHandler_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "LoansHandler"
-        }
-      ]
-    },
-    "AMPLIFY_function_LoansHandler_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "LoansHandler"
-        }
-      ]
-    },
     "AMPLIFY_function_loanSignUpTrigger_deploymentBucketName": {
       "usedBy": [
         {
@@ -142,14 +80,26 @@
           "resourceName": "loanSignUpTrigger"
         }
       ]
+    },
+    "AMPLIFY_function_loansHandler_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "loansHandler"
+        }
+      ]
+    },
+    "AMPLIFY_function_loansHandler_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "loansHandler"
+        }
+      ]
     }
   },
   "storage": {
-    "accounts": {
-      "providerPlugin": "awscloudformation",
-      "service": "DynamoDB"
-    },
-    "loans": {
+    "loansdb": {
       "providerPlugin": "awscloudformation",
       "service": "DynamoDB"
     }

@@ -14,28 +14,23 @@
     },
     "categories": {
       "function": {
-        "AccountHandler": {
-          "deploymentBucketName": "amplify-loanapp-dev-91540-deployment",
-          "s3Key": "amplify-builds/AccountHandler-3548703470476f686930-build.zip"
-        },
-        "LoansHandler": {
-          "deploymentBucketName": "amplify-loanapp-dev-91540-deployment",
-          "s3Key": "amplify-builds/LoansHandler-4d47786b5a7378727451-build.zip"
-        },
         "loanSignUpTrigger": {
           "deploymentBucketName": "amplify-loanapp-dev-91540-deployment",
-          "s3Key": "amplify-builds/loanSignUpTrigger-42654a7a497167393834-build.zip"
+          "s3Key": "amplify-builds/loanSignUpTrigger-686a6f7a6575337a412f-build.zip"
+        },
+        "loansHandler": {
+          "deploymentBucketName": "amplify-loanapp-dev-91540-deployment",
+          "s3Key": "amplify-builds/loansHandler-71766165676335694e55-build.zip"
         }
       },
       "auth": {
         "loanapp": {}
       },
       "storage": {
-        "accounts": {},
-        "loans": {}
+        "loansdb": {}
       },
       "api": {
-        "loanapi": {}
+        "loanApi": {}
       }
     }
   }

@@ -1,8 +1,8 @@
 {
-  "resourceName": "loans",
+  "resourceName": "loansdb",
   "tableName": "loans",
   "partitionKey": {
-    "fieldName": "CustomerSSN",
+    "fieldName": "id",
     "fieldType": "string"
   },
   "gsi": [],

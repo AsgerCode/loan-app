@@ -1,6 +1,6 @@
 export type AmplifyDependentResourcesAttributes = {
   "api": {
-    "loanapi": {
+    "loanApi": {
       "ApiId": "string",
       "ApiName": "string",
       "RootUrl": "string"
@@ -18,21 +18,14 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "function": {
-    "AccountHandler": {
-      "Arn": "string",
-      "LambdaExecutionRole": "string",
-      "LambdaExecutionRoleArn": "string",
-      "Name": "string",
-      "Region": "string"
-    },
-    "LoansHandler": {
-      "Arn": "string",
-      "LambdaExecutionRole": "string",
-      "LambdaExecutionRoleArn": "string",
-      "Name": "string",
-      "Region": "string"
-    },
     "loanSignUpTrigger": {
+      "Arn": "string",
+      "LambdaExecutionRole": "string",
+      "LambdaExecutionRoleArn": "string",
+      "Name": "string",
+      "Region": "string"
+    },
+    "loansHandler": {
       "Arn": "string",
       "LambdaExecutionRole": "string",
       "LambdaExecutionRoleArn": "string",
@@ -41,15 +34,7 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "storage": {
-    "accounts": {
-      "Arn": "string",
-      "Name": "string",
-      "PartitionKeyName": "string",
-      "PartitionKeyType": "string",
-      "Region": "string",
-      "StreamArn": "string"
-    },
-    "loans": {
+    "loansdb": {
       "Arn": "string",
       "Name": "string",
       "PartitionKeyName": "string",
