@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Auth } from 'aws-amplify';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -22,15 +23,16 @@ export default function SignIn() {
     if (location.state) {
       setMessage(location.state.signup);
     }
-	}, [])
+	}, []);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    try {
+      const user = await Auth.signIn(data.get('email'), data.get('password'));
+    } catch (error) {
+      console.log('error signing in', error);
+    }
   };
 
   return (

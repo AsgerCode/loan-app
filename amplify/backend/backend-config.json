@@ -87,6 +87,11 @@
       ],
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
+    },
+    "loanSignUpTrigger": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
     }
   },
   "parameters": {
@@ -119,6 +124,22 @@
         {
           "category": "function",
           "resourceName": "LoansHandler"
+        }
+      ]
+    },
+    "AMPLIFY_function_loanSignUpTrigger_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "loanSignUpTrigger"
+        }
+      ]
+    },
+    "AMPLIFY_function_loanSignUpTrigger_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "loanSignUpTrigger"
         }
       ]
     }

@@ -21,6 +21,10 @@
         "LoansHandler": {
           "deploymentBucketName": "amplify-loanapp-dev-91540-deployment",
           "s3Key": "amplify-builds/LoansHandler-4d47786b5a7378727451-build.zip"
+        },
+        "loanSignUpTrigger": {
+          "deploymentBucketName": "amplify-loanapp-dev-91540-deployment",
+          "s3Key": "amplify-builds/loanSignUpTrigger-42654a7a497167393834-build.zip"
         }
       },
       "auth": {
