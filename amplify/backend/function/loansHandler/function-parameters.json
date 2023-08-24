@@ -1,0 +1,13 @@
+{
+  "lambdaLayers": [],
+  "permissions": {
+    "storage": {
+      "loansdb": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    }
+  }
+}
