@@ -21,7 +21,7 @@ On this section I will be addressing the bonus points one by one and explaining 
 2. While I have read about Artillery, I never used it. I know that adapting your application to an event-driven approach using SQS or EventBridge can highly impact costs and performance for the better.
 3. Amplify fully manages CI/CD. I have no experience writing pipelines, but I know what they are and what they achieve.
 4. My understanding is that these 3 concepts are related. A VPC is a private cloud where you can host any service you want (if allowed). The load balancer distributes traffic to those services hosted on diferent VPC's, based on which VPC's have the least traffic. Auto scaling simply provisions new VPC's based on the load that the other VPC's have. If all VPC's are overloaded, new ones are created, if resources are not being used, some VPC's are taken down.
-5. The provisions for this application were managed by Amplify. I don't have experience developing Terraform and rely on other services to help me provision. However you can find the CloudFormation script on this directory, under amplify/backend/awscloudformation.
+5. The provisions for this application were managed by Amplify. I don't have experience developing Cloudformation and rely on other services to help me provision. However I sent the Cloudformation build on the email with the deliverables.
 
 ## The application is live!
 
