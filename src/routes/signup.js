@@ -47,7 +47,7 @@ export default function SignUp() {
       }
 
       // registering our user. 
-      const { user } = await Auth.signUp({
+      await Auth.signUp({
         username: data.get('username'),
         password: data.get('password'),
         attributes: {
@@ -55,7 +55,7 @@ export default function SignUp() {
           'custom:role': role,
         }
       });
-      navigate('/', {state:{signup: "Account created successfully, you may login."}});
+      navigate('/', {state: {signup: "Account created successfully, you may login."}});
     } catch (error) {
       setError(error);
     }

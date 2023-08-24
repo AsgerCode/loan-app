@@ -16,11 +16,11 @@
       "function": {
         "loanSignUpTrigger": {
           "deploymentBucketName": "amplify-loanapp-dev-91540-deployment",
-          "s3Key": "amplify-builds/loanSignUpTrigger-686a6f7a6575337a412f-build.zip"
+          "s3Key": "amplify-builds/loanSignUpTrigger-32635059384149577158-build.zip"
         },
         "loansHandler": {
           "deploymentBucketName": "amplify-loanapp-dev-91540-deployment",
-          "s3Key": "amplify-builds/loansHandler-71766165676335694e55-build.zip"
+          "s3Key": "amplify-builds/loansHandler-66375466506e5a72364b-build.zip"
         }
       },
       "auth": {

@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Auth, API } from 'aws-amplify';
+import SignoutButton from '../components/signoutButton';
 
 // setting our theme up
 const defaultTheme = createTheme({
@@ -20,6 +21,18 @@ const defaultTheme = createTheme({
 export default function Customer() {
   const [error, setError] = React.useState('');
   const [success, setSuccess] = React.useState('');
+  const [customer, setCustomer] = React.useState(false);
+
+  React.useEffect(() => {
+    async function authenticate() {
+      const user = await Auth.currentAuthenticatedUser();
+      const role = user.attributes['custom:role'];
+      if (role === 'customer') {
+        setCustomer(true);
+      }
+    };
+    authenticate();
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -90,87 +103,111 @@ export default function Customer() {
       });
   };
 
-  return (
-    <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-          <Typography component="h1" variant="h5">
-            Loan Request
-          </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-            <Grid container spacing={2}>
-              {error && <Grid item xs={12}>
-                <Alert severity="error">{error.toString()}</Alert>
-              </Grid>}
-              {success && <Grid item xs={12}>
-              <Alert severity="success">{success}</Alert>
-              </Grid>}
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="ssn"
-                  label="SSN"
-                  name="ssn"
-                />
+  if (customer) {
+    return (
+      <ThemeProvider theme={defaultTheme}>
+        <Container component="main" maxWidth="xs">
+          <CssBaseline />
+          <Box
+            sx={{
+              marginTop: 8,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          >
+            <Typography component="h1" variant="h5">
+              Loan Request
+            </Typography>
+            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+              <Grid container spacing={2}>
+                {error && <Grid item xs={12}>
+                  <Alert severity="error">{error.toString()}</Alert>
+                </Grid>}
+                {success && <Grid item xs={12}>
+                  <Alert severity="success">{success}</Alert>
+                </Grid>}
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    id="ssn"
+                    label="SSN"
+                    name="ssn"
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    id="fullname"
+                    label="Full Name"
+                    name="fullname"
+                    autoComplete="full-name"
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    name="loan"
+                    label="Loan Amount"
+                    id="loan"
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    name="equity"
+                    label="Equity Amount"
+                    id="equity"
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    name="salary"
+                    label="Salary Amount"
+                    id="salary"
+                  />
+                </Grid>
               </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="fullname"
-                  label="Full Name"
-                  name="fullname"
-                  autoComplete="full-name"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="loan"
-                  label="Loan Amount"
-                  id="loan"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="equity"
-                  label="Equity Amount"
-                  id="equity"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="salary"
-                  label="Salary Amount"
-                  id="salary"
-                />
-              </Grid>
-            </Grid>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Apply for loan
-            </Button>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+              >
+                Apply for loan
+              </Button>
+            </Box>
           </Box>
-        </Box>
-      </Container>
-    </ThemeProvider>
-  );
+          <SignoutButton/>
+        </Container>
+      </ThemeProvider>
+    )
+  } else {
+    return (
+      <ThemeProvider theme={defaultTheme}>
+        <Container component="main">
+          <CssBaseline />
+          <Box
+            sx={{
+              marginTop: 8,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          >
+            <Typography component="h1" variant="h5">
+              YOU ARE NOT A CUSTOMER
+            </Typography>
+            <SignoutButton/>
+          </Box>
+        </Container>
+      </ThemeProvider>
+    )
+  }
 }

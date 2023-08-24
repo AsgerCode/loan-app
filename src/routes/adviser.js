@@ -12,17 +12,28 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Auth, API } from 'aws-amplify';
+import SignoutButton from '../components/signoutButton';
 
 const defaultTheme = createTheme({
     palette: {
-      mode: 'dark',
+        mode: 'dark',
     },
-  });
+});
 
 export default function Adviser() {
     const [rows, setRows] = React.useState([]);
+    const [adviser, setAdviser] = React.useState(false);
 
     React.useEffect(() => {
+        async function authenticate() {
+            const user = await Auth.currentAuthenticatedUser();
+            const role = user.attributes['custom:role'];
+            if (role === 'adviser') {
+                setAdviser(true);
+            }
+        };
+        authenticate();
+
         // material UI has this implementation to build tables, so I decided to give it a go
         function createData(id, customerSSN, fullName, loan, equity, salary, date) {
             return { id, customerSSN, fullName, loan, equity, salary, date };
@@ -55,62 +66,86 @@ export default function Adviser() {
         buildData();
     }, []);
 
-    return (
-        <ThemeProvider theme={defaultTheme}>
-            <Container component="main">
-                <CssBaseline />
-                <Box
-                    sx={{
-                        marginTop: 8,
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                    }}
-                >
-                    <Typography component="h1" variant="h5">
-                        Loan database
-                    </Typography>
-                </Box>
-                <Box
-                    sx={{
-                        marginTop: 3,
-                        flexDirection: 'column',
-                        alignItems: 'left',
-                    }}
-                >
-                <TableContainer component={Paper}>
-                    <Table aria-label="simple table">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell align="center">Loan ID</TableCell>
-                                <TableCell align="center">SSN</TableCell>
-                                <TableCell align="center">Full Name</TableCell>
-                                <TableCell align="center">Date</TableCell>
-                                <TableCell align="center">Loan Amount</TableCell>
-                                <TableCell align="center">Equity Amount</TableCell>
-                                <TableCell align="center">Salary Amount</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {rows.map((row) => (
-                                <TableRow
-                                    key={row.id}
-                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                >
-                                    <TableCell align="center">{row.id}</TableCell>
-                                    <TableCell align="center">{row.customerSSN}</TableCell>
-                                    <TableCell align="center">{row.fullName}</TableCell>
-                                    <TableCell align="center">{row.date}</TableCell>
-                                    <TableCell align="center">{row.loan}</TableCell>
-                                    <TableCell align="center">{row.equity}</TableCell>
-                                    <TableCell align="center">{row.salary}</TableCell>
-                                </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-                </Box>
-            </Container>
-        </ThemeProvider>
-    )
+    if (adviser) {
+        return (
+            <ThemeProvider theme={defaultTheme}>
+                <Container component="main">
+                    <CssBaseline />
+                    <Box
+                        sx={{
+                            marginTop: 8,
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                        }}
+                    >
+                        <Typography component="h1" variant="h5">
+                            Loan database
+                        </Typography>
+                    </Box>
+                    <Box
+                        sx={{
+                            marginTop: 3,
+                            flexDirection: 'column',
+                            alignItems: 'left',
+                        }}
+                    >
+                        <TableContainer component={Paper}>
+                            <Table aria-label="simple table">
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell align="center">Loan ID</TableCell>
+                                        <TableCell align="center">SSN</TableCell>
+                                        <TableCell align="center">Full Name</TableCell>
+                                        <TableCell align="center">Date</TableCell>
+                                        <TableCell align="center">Loan Amount</TableCell>
+                                        <TableCell align="center">Equity Amount</TableCell>
+                                        <TableCell align="center">Salary Amount</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {rows.map((row) => (
+                                        <TableRow
+                                            key={row.id}
+                                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                        >
+                                            <TableCell align="center">{row.id}</TableCell>
+                                            <TableCell align="center">{row.customerSSN}</TableCell>
+                                            <TableCell align="center">{row.fullName}</TableCell>
+                                            <TableCell align="center">{row.date}</TableCell>
+                                            <TableCell align="center">{row.loan}</TableCell>
+                                            <TableCell align="center">{row.equity}</TableCell>
+                                            <TableCell align="center">{row.salary}</TableCell>
+                                        </TableRow>
+                                    ))}
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
+                        <SignoutButton/>
+                    </Box>
+                </Container>
+            </ThemeProvider>
+        )
+    } else {
+        return (
+            <ThemeProvider theme={defaultTheme}>
+                <Container component="main">
+                    <CssBaseline />
+                    <Box
+                        sx={{
+                            marginTop: 8,
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                        }}
+                    >
+                        <Typography component="h1" variant="h5">
+                            YOU ARE NOT AN ADVISER
+                        </Typography>
+                        <SignoutButton/>
+                    </Box>
+                </Container>
+            </ThemeProvider>
+        )
+    }
 }
