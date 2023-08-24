@@ -31,6 +31,12 @@
       },
       "api": {
         "loanApi": {}
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d1pyw9velwxohf",
+          "type": "cicd"
+        }
       }
     }
   }
