@@ -25,11 +25,13 @@ On this section I will be addressing the bonus points one by one and explaining 
 
 ## The application is live!
 
-You can head over [HERE]() and use the application right now, straight from the cloud!
+You can head over [HERE](https://dev.dz04ne4fxzh72.amplifyapp.com/) and use the application right now, straight from the cloud!
 The homepage is a login screen, but there's an option to create an account.
 When logging in, the app will redirect you to the relevant page, depending on if the registered user is a customer or an adviser.
 
 ## Available Scripts
+
+Firstly, open a terminal on the project's root directory and run `npm install`. Let it finish.
 
 In the project directory, you can run:
 
