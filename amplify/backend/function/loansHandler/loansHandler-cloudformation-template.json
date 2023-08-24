@@ -23,10 +23,6 @@
     "storageloansdbArn": {
       "Type": "String",
       "Default": "storageloansdbArn"
-    },
-    "storageloansdbStreamArn": {
-      "Type": "String",
-      "Default": "storageloansdbStreamArn"
     }
   },
   "Conditions": {
@@ -81,15 +77,6 @@
             },
             "REGION": {
               "Ref": "AWS::Region"
-            },
-            "STORAGE_LOANSDB_NAME": {
-              "Ref": "storageloansdbName"
-            },
-            "STORAGE_LOANSDB_ARN": {
-              "Ref": "storageloansdbArn"
-            },
-            "STORAGE_LOANSDB_STREAMARN": {
-              "Ref": "storageloansdbStreamArn"
             }
           }
         },
@@ -110,12 +97,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "loanappLambdaRole3efd37fc",
+            "loanappLambdaRole258a06f5",
             {
               "Fn::Join": [
                 "",
                 [
-                  "loanappLambdaRole3efd37fc",
+                  "loanappLambdaRole258a06f5",
                   "-",
                   {
                     "Ref": "env"
@@ -192,62 +179,6 @@
                 "dynamodb:PutItem",
                 "dynamodb:UpdateItem",
                 "dynamodb:DeleteItem"
-              ],
-              "Resource": [
-                {
-                  "Ref": "storageloansdbArn"
-                },
-                {
-                  "Fn::Join": [
-                    "/",
-                    [
-                      {
-                        "Ref": "storageloansdbArn"
-                      },
-                      "index/*"
-                    ]
-                  ]
-                }
-              ]
-            }
-          ]
-        }
-      }
-    },
-    "AmplifyResourcesPolicy": {
-      "DependsOn": [
-        "LambdaExecutionRole"
-      ],
-      "Type": "AWS::IAM::Policy",
-      "Properties": {
-        "PolicyName": "amplify-lambda-execution-policy",
-        "Roles": [
-          {
-            "Ref": "LambdaExecutionRole"
-          }
-        ],
-        "PolicyDocument": {
-          "Version": "2012-10-17",
-          "Statement": [
-            {
-              "Effect": "Allow",
-              "Action": [
-                "dynamodb:Put*",
-                "dynamodb:Create*",
-                "dynamodb:BatchWriteItem",
-                "dynamodb:PartiQLInsert",
-                "dynamodb:Get*",
-                "dynamodb:BatchGetItem",
-                "dynamodb:List*",
-                "dynamodb:Describe*",
-                "dynamodb:Scan",
-                "dynamodb:Query",
-                "dynamodb:PartiQLSelect",
-                "dynamodb:Update*",
-                "dynamodb:RestoreTable*",
-                "dynamodb:PartiQLUpdate",
-                "dynamodb:Delete*",
-                "dynamodb:PartiQLDelete"
               ],
               "Resource": [
                 {

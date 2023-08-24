@@ -1,26 +1,26 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-loanapp-dev-91540-authRole",
-      "UnauthRoleArn": "arn:aws:iam::942110584303:role/amplify-loanapp-dev-91540-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::942110584303:role/amplify-loanapp-dev-91540-authRole",
+      "AuthRoleName": "amplify-loanapp-dev-44151-authRole",
+      "UnauthRoleArn": "arn:aws:iam::942110584303:role/amplify-loanapp-dev-44151-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::942110584303:role/amplify-loanapp-dev-44151-authRole",
       "Region": "eu-north-1",
-      "DeploymentBucketName": "amplify-loanapp-dev-91540-deployment",
-      "UnauthRoleName": "amplify-loanapp-dev-91540-unauthRole",
-      "StackName": "amplify-loanapp-dev-91540",
-      "StackId": "arn:aws:cloudformation:eu-north-1:942110584303:stack/amplify-loanapp-dev-91540/ede00700-3ffa-11ee-ad50-0e5077e4a312",
-      "AmplifyAppId": "d1pyw9velwxohf",
-      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-loanapp-dev-91540-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
+      "DeploymentBucketName": "amplify-loanapp-dev-44151-deployment",
+      "UnauthRoleName": "amplify-loanapp-dev-44151-unauthRole",
+      "StackName": "amplify-loanapp-dev-44151",
+      "StackId": "arn:aws:cloudformation:eu-north-1:942110584303:stack/amplify-loanapp-dev-44151/2a83acc0-4230-11ee-9697-0e326f44e3c6",
+      "AmplifyAppId": "dz04ne4fxzh72",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-loanapp-dev-44151-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
     },
     "categories": {
       "function": {
-        "loanSignUpTrigger": {
-          "deploymentBucketName": "amplify-loanapp-dev-91540-deployment",
-          "s3Key": "amplify-builds/loanSignUpTrigger-32635059384149577158-build.zip"
-        },
         "loansHandler": {
-          "deploymentBucketName": "amplify-loanapp-dev-91540-deployment",
-          "s3Key": "amplify-builds/loansHandler-66375466506e5a72364b-build.zip"
+          "deploymentBucketName": "amplify-loanapp-dev-44151-deployment",
+          "s3Key": "amplify-builds/loansHandler-6c2b394b38396a773878-build.zip"
+        },
+        "loanSignUpTrigger": {
+          "deploymentBucketName": "amplify-loanapp-dev-44151-deployment",
+          "s3Key": "amplify-builds/loanSignUpTrigger-556c4e4c4c6b59303357-build.zip"
         }
       },
       "auth": {
@@ -34,8 +34,8 @@
       },
       "hosting": {
         "amplifyhosting": {
-          "appId": "d1pyw9velwxohf",
-          "type": "cicd"
+          "appId": "dz04ne4fxzh72",
+          "type": "manual"
         }
       }
     }

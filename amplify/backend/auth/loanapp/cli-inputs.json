@@ -1,10 +1,10 @@
 {
   "version": "1",
   "cognitoConfig": {
-    "identityPoolName": "loanapp_identitypool_246978d2",
+    "identityPoolName": "loanapp_identitypool_64ae5afc",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "loanap246978d2",
-    "userPoolName": "loanapp_userpool_246978d2",
+    "resourceNameTruncated": "loanap64ae5afc",
+    "userPoolName": "loanapp_userpool_64ae5afc",
     "autoVerifiedAttributes": [
       "email"
     ],
@@ -31,11 +31,11 @@
     "userpoolClientReadAttributes": [
       "email"
     ],
-    "userpoolClientLambdaRole": "loanap246978d2_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "loanap64ae5afc_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
     "authSelections": "identityPoolAndUserPool",
     "resourceName": "loanapp",
-    "sharedId": "246978d2",
+    "sharedId": "64ae5afc",
     "serviceName": "Cognito",
     "useDefault": "manual"
   }

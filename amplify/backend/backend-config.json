@@ -44,6 +44,7 @@
   "function": {
     "loanSignUpTrigger": {
       "build": true,
+      "dependsOn": [],
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     },
@@ -51,10 +52,13 @@
       "build": true,
       "dependsOn": [
         {
+          "attributeEnvMap": {
+            "Arn": "TABLE_ARN",
+            "Name": "TABLE_NAME"
+          },
           "attributes": [
             "Name",
-            "Arn",
-            "StreamArn"
+            "Arn"
           ],
           "category": "storage",
           "resourceName": "loansdb"
@@ -66,9 +70,9 @@
   },
   "hosting": {
     "amplifyhosting": {
-      "lastPushTimeStamp": "2023-08-24T00:02:50.974Z",
+      "providerPlugin": "awscloudformation",
       "service": "amplifyhosting",
-      "type": "cicd"
+      "type": "manual"
     }
   },
   "parameters": {
